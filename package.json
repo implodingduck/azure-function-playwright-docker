@@ -1,0 +1,14 @@
+{
+  "name": "",
+  "version": "",
+  "description": "",
+  "scripts" : {
+    "test": "echo \"No tests yet...\""
+  },
+  "author": "",
+  "dependencies": {
+    "playwright": "^1.17.1",
+    "playwright-chromium": "^1.17.1"
+  },
+  "devDependencies": {}
+}
