@@ -5,7 +5,7 @@ module.exports = async function (context, req) {
 
     const browser = await chromium.launch();
     const page = await browser.newPage();
-    await page.goto('http://whatsmyuseragent.org/');
+    await page.goto('https://sslnginx/');
     const screenshot = await page.screenshot({ fullPage: true });
 
     await browser.close();
