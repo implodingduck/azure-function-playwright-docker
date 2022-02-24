@@ -59,14 +59,14 @@ RUN mkdir -p /tmp
 COPY ssh_setup.sh /tmp
 RUN chmod +x /tmp/ssh_setup.sh \
     && (sleep 1;/tmp/ssh_setup.sh 2>&1 > /dev/null)
-    
-COPY root.implodingduck.local.crt /usr/local/share/ca-certificates/extra/
-#RUN dpkg-reconfigure ca-certificates
-RUN update-ca-certificates
 
-RUN mkdir -p /home/.pki/nssdb
-RUN certutil -N -d /home/.pki/nssdb --empty-password
-RUN certutil -d sql:/home/.pki/nssdb -A -t "C,," -n root.implodingduck.local -i /usr/local/share/ca-certificates/extra/root.implodingduck.local.crt
+#COPY root.implodingduck.local.crt /usr/local/share/ca-certificates/extra/
+#RUN dpkg-reconfigure ca-certificates
+#RUN update-ca-certificates
+
+#RUN mkdir -p /home/.pki/nssdb
+#RUN certutil -N -d /home/.pki/nssdb --empty-password
+#RUN certutil -d sql:/home/.pki/nssdb -A -t "C,," -n root.implodingduck.local -i /usr/local/share/ca-certificates/extra/root.implodingduck.local.crt
 
 COPY . /home/site/wwwroot
 
