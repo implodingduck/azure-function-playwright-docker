@@ -49,8 +49,17 @@ libxml2>=2.7.4 \
 libxrandr2 \
 libxshmfence1 \
 libxslt1.1>=1.1.25 \
-libnss3-tools
+libnss3-tools \
+openssh-server
 
+RUN echo "root:Docker!" | chpasswd 
+COPY sshd_config /etc/ssh/
+# Copy and configure the ssh_setup file
+RUN mkdir -p /tmp
+COPY ssh_setup.sh /tmp
+RUN chmod +x /tmp/ssh_setup.sh \
+    && (sleep 1;/tmp/ssh_setup.sh 2>&1 > /dev/null)
+    
 COPY root.implodingduck.local.crt /usr/local/share/ca-certificates/extra/
 #RUN dpkg-reconfigure ca-certificates
 RUN update-ca-certificates
@@ -63,3 +72,5 @@ COPY . /home/site/wwwroot
 
 RUN cd /home/site/wwwroot && \
     npm install
+
+EXPOSE 80 2222
